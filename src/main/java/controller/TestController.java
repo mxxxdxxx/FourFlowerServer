@@ -26,11 +26,10 @@ public class TestController {
         return testService.getUserList();
     }
 
-    @GetMapping(value = "/api/user/{user_Id}")
-    public String getUser(@PathVariable Long userId) {
-        return testService.getUser(userId);
-    }
-
-
-
+    /**
+     * @GetMapping(value = "/api/user/{user_Id}")
+     *     public String getUser(@PathVariable Long userId) {
+     *         return testService.getUser(user_id);
+     *     }
+     */
 }
