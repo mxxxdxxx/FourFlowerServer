@@ -2,34 +2,39 @@ package controller;
 
 import entity.User;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import service.TestService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @AllArgsConstructor
+@RequestMapping("/api")
 public class TestController {
 
     private final TestService testService;
 
-    @GetMapping(value = "api/test")
+    @GetMapping("/test")
     public String test() {
-        String json = "{name : 'icecream'}";
-        return json;
+        return "test";
     }
 
-    @GetMapping(value = "/api/user")
-    public List<User> getUserList() {
-        return testService.getUserList();
+    @GetMapping("/user")
+    public String getUserList(Model model) {
+        List<User> userList = testService.getUserList();
+        model.addAttribute("users", userList);
+        return "user-list";
     }
 
-    /**
-     * @GetMapping(value = "/api/user/{user_Id}")
-     *     public String getUser(@PathVariable Long userId) {
-     *         return testService.getUser(user_id);
-     *     }
-     */
+    @GetMapping("/user/{userId}")
+    public String getUser(@PathVariable Long userId, Model model) {
+        User user = testService.getUser(userId);
+        model.addAttribute("user", user);
+        return "user-detail";
+    }
 }

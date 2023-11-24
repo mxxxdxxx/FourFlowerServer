@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+  <form action="/members/new" method="post">
+    <div class="form-group">
+      <label for="name" th:text="#{label.name}">이름</label>
+      <input type="text" id="name" name="name" th:placeholder="#{placeholder.enterName}">
+    </div>
+    <button type="submit" th:text="#{button.register}">등록</button>
+  </form>
+</div> <!-- /container -->
+</body>
+</html>
